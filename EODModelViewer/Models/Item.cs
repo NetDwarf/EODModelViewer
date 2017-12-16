@@ -67,6 +67,13 @@ namespace EODModelViewer.Models
                         item.ModelId = modelId;
                     }
                     break;
+                case "WeaponHand":
+                    reader.Read();
+                    if (int.TryParse(reader.Value.ToString(), out int weaponHand))
+                    {
+                        item.WeaponHand = weaponHand;
+                    }
+                    break;
                 case "Name":
                     reader.Read();
                     item.Name = reader.Value.ToString();
