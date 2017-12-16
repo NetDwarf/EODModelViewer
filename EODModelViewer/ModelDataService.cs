@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using EODModelViewer.Models;
-using Newtonsoft.Json;
 
 namespace EODModelViewer
 {
@@ -21,10 +20,10 @@ namespace EODModelViewer
             var parsedData = new Dictionary<string, List<IModelObject>>();
 
             var itemsTask = Task.Run(() =>
-                JsonConvert.DeserializeObject<List<Item>>(data["items.json"]).Select(x => x as IModelObject).ToList());
+                Item.ParseItems(data["items.json"]).Select(x => x as IModelObject).ToList());
 
             var mobsTask = Task.Run(() =>
-                JsonConvert.DeserializeObject<List<Mob>>(data["mobs.json"]).Select(x => x as IModelObject).ToList());
+                Mob.ParseMobs(data["mobs.json"]).Select(x => x as IModelObject).ToList());
 
             var items = await itemsTask;
             var mobs = await mobsTask;
