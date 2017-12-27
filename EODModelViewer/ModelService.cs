@@ -48,7 +48,7 @@ namespace EODModelViewer
 
         public async Task<Image> GetItemPicture(int modelId)
         {
-            var path = "./models/items/";
+            var path = "./EODModelViewer/models/items/";
             var image = LoadAsset(modelId, path);
 
             if (image != null)
@@ -69,7 +69,7 @@ namespace EODModelViewer
 
         public async Task<Image> GetMobPicture(int modelId)
         {
-            var path = "./models/mobs/";
+            var path = "./EODModelViewer/models/mobs/";
             var image = LoadAsset(modelId, path);
 
             if (image != null)
@@ -117,7 +117,7 @@ namespace EODModelViewer
                     var image = Image.FromStream(new MemoryStream(data));
                     return image;
                 }
-                catch (WebException ex) when (ex.Message == "The remote server returned an error: (404) Not Found.")
+                catch (WebException)
                 {
                 }
             }

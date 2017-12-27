@@ -36,15 +36,15 @@ namespace EODModelViewer
 
         public async Task<Dictionary<string, string>> GetData()
         {
-            if (!File.Exists("./Data/items.json") || !File.Exists("./Data/items.json"))
+            if (!File.Exists("./EODModelViewer/data/items.json") || !File.Exists("./EODModelViewer/data/items.json"))
             {
                 return await DownloadDataAsync();
             }
 
             var data = new Dictionary<string, string>
             {
-                {"items.json", File.ReadAllText("./Data/items.json")},
-                {"mobs.json", File.ReadAllText("./Data/mobs.json")}
+                {"items.json", File.ReadAllText("./EODModelViewer/data/items.json")},
+                {"mobs.json", File.ReadAllText("./EODModelViewer/data/mobs.json")}
             };
 
             return data;
@@ -78,14 +78,14 @@ namespace EODModelViewer
 
         public void PersistData(Dictionary<string, string> data)
         {
-            if (!Directory.Exists("./Data"))
+            if (!Directory.Exists("./EODModelViewer/data"))
             {
-                Directory.CreateDirectory("./Data");
+                Directory.CreateDirectory("./EODModelViewer/data");
             }
 
             foreach (var dataKey in data.Keys)
             {
-                File.WriteAllText($"./Data/{dataKey}", data[dataKey]);
+                File.WriteAllText($"./EODModelViewer/data/{dataKey}", data[dataKey]);
             }
         }
 
